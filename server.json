@@ -1,0 +1,16 @@
+{
+    "fotos": [
+        {
+            "id": 1,
+            "imagem": "https://lh3.googleusercontent.com/pw/AP1GczMk3gC5P_7MtjbftGe8cJ0o1pKfaFoX40hp2nkTQZYxHWSy9q5LO-aJKG_UUyCqnrABlGwn1575McL6j7BwKVUhh2t7AOtzKvnnimK5ZzcI5RjLAdZrNcKZ3po7rIy2dzdxr43ouX8KpgusIb95JVRm=w1436-h2554-s-no-gm?authuser=0",
+            "legenda": "Biblioteca",
+            "data": "07/08/2025"
+        },
+        {
+            "id": 2,
+            "imagem": "https://lh3.googleusercontent.com/pw/AP1GczNLzqzQxg6hrXK2E3K0dDa-TouArscYfZVpdml6dg3LC-Dra4jzRe3AXmXrqhwH0cLiYOj9b940WNgDxon9liS-yHY_RuHLrZ1F5lKuisoM7EG3ABNCb0dC65U38DenBCibqf3yG8HKUP4UBBCd6Pz1=w1436-h2554-s-no-gm?authuser=0",
+            "legenda": "Sala de Imacs",
+            "data": "07/08/2025"
+        }
+    ]
+}
