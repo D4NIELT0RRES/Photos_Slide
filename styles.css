@@ -1,69 +1,305 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: blue;
-  font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Easter Egg: Estrelas flutuantes */
+.estrelas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.estrela {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: piscar 2s infinite;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
 }
 
 h1 {
-  color: white;
-  text-align: center;
-  margin: 20px 0;
+    color: white;
+    text-align: center;
+    margin: 30px 0;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+h1:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+}
+
+.container-galeria {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 #galeria {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px;
-  gap: 20px;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-#galeria::-webkit-scrollbar {
-  height: 8px;
+.sem-fotos {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    padding: 40px;
 }
 
-#galeria::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
+.sem-fotos p {
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .card {
-  flex: 0 0 auto;
-  width: 300px;
-  height: 400px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
+    flex: 0 0 350px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
 }
 
 .card:hover {
-  transform: scale(1.05);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+    z-index: 1;
+}
+
+.card:hover::before {
+    left: 100%;
 }
 
 .card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.conteudo-card {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card p {
-  color: black;
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
+    color: #333;
+    text-align: center;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.card p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.card p:last-child {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Botões de navegação */
+.botao-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.botao-nav:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.botao-anterior {
+    left: 10px;
+}
+
+.botao-proximo {
+    right: 10px;
+}
+
+/* Indicadores */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicador.ativo {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Console secreto */
+.console-secreto {
+    position: fixed;
+    bottom: -200px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 20px;
+    transition: bottom 0.5s ease;
+    z-index: 100;
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+.console-secreto.ativo {
+    bottom: 0;
+}
+
+.entrada-console {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    margin-top: 10px;
+}
+
+/* Easter Egg: Modo party */
+body.modo-festa {
+    animation: arco-iris 2s infinite;
+}
+
+@keyframes arco-iris {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes girar {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+    z-index: 10;
 }
 
 footer p {
-  color: white;
-  text-align: center;
-  margin: 30px 0;
+    color: white;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 320px;
+        height: 450px;
+    }
+    
+    .card img {
+        height: 250px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .botao-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
