@@ -2,10 +2,10 @@
   "name": "json-server-carousel",
   "version": "1.0.0",
   "description": "A simple photo carousel with a JSON Server backend.",
-  "main": "server.json",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.json",
-    "dev": "nodemon server.json",
+    "start": "json-server --watch API/db.json --port $PORT",
+    "dev": "nodemon API/db.json",
     "json-server": "json-server --watch API/db.json"
   },
   "keywords": [],
